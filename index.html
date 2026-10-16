@@ -900,7 +900,7 @@ try{cart=(JSON.parse(localStorage.getItem("ay_cart"))||[]).filter(function(c){re
 cart.forEach(function(c){if(c.g!=null&&c.s&&D[c.g]&&D[c.g].i[c.k])c.p=D[c.g].i[c.k][1+ZS.indexOf(c.s)]});
 if(/resetpts/.test(String(location.search)))try{localStorage.removeItem("ay_pts")}catch(e){}
 function sv(){try{localStorage.setItem("ay_cart",JSON.stringify(cart))}catch(e){}}
-function isFri(){var d=new Date(),w=d.getDay(),h=d.getHours();return(w==5&&h>=14)||(w==6&&h<5)}
+function isFri(){var d=new Date(),w=d.getDay(),h=d.getHours();return(w==5&&h>=17)||(w==6&&h<5)}
 function gp(){try{return +localStorage.getItem("ay_pts")||0}catch(e){return 0}}
 function calc(){var sub=0;cart.forEach(function(c){sub+=lp(c)});var m=document.querySelector("input[name=dv]:checked").value,fee=m=="0"?0:(sub>=500?0:+m),pts=gp(),fri=isFri(),can=pts>=5&&fri&&sub>0,use=can&&$("pu").checked,disc=use?Math.round(sub*.2):0;return{sub:sub,m:m,fee:fee,pts:pts,can:can,use:use,disc:disc,tot:sub-disc+fee}}
 function draw(q){var n=0,c=calc();cart.forEach(function(x){n+=x.q});
@@ -1018,14 +1018,14 @@ setLang(saved=="en"?"en":"ar",true);fx();
 </script>
 <script>
 (function(){
- function isOpen(){var h=new Date().getHours();return h>=14||h<5}
+ function isOpen(){var h=new Date().getHours();return h>=17||h<5}
  var rv=document.getElementById('rv'),wa=document.getElementById('wa');
  if(!rv||!wa)return;
  var bn=document.createElement('div');
  bn.id='closedMsg';bn.hidden=true;
  bn.style.cssText='background:#fde8e6;color:#8a1c14;border:1px solid #e9b4ae;border-radius:14px;padding:12px 14px;margin:12px 0;font-weight:800;text-align:center;line-height:1.6';
  rv.parentNode.insertBefore(bn,rv);
- function msgTxt(){return document.documentElement.lang==='en'?'The restaurant is closed now. We take orders from 2 PM to 5 AM daily.':'المحل مقفول دلوقتي ⏰ بنستقبل الطلبات كل يوم من 2 الظهر لـ 5 الفجر. تقدر تحط طلبك في السلة وتبعته وقت الشغل.'}
+ function msgTxt(){return document.documentElement.lang==='en'?'The restaurant is closed now. We take orders from 5 PM to 5 AM daily.':'المحل مقفول دلوقتي ⏰ بنستقبل الطلبات كل يوم من 5 العصر لـ 5 الفجر. تقدر تحط طلبك في السلة وتبعته وقت الشغل.'}
  function upd(){var o=isOpen();bn.hidden=o;bn.textContent=msgTxt();rv.disabled=!o;rv.style.opacity=o?'':'.5';rv.style.cursor=o?'':'not-allowed'}
  rv.addEventListener('click',function(e){if(!isOpen()){e.stopImmediatePropagation();e.preventDefault();upd()}},true);
  wa.addEventListener('click',function(e){if(!isOpen()){e.stopImmediatePropagation();e.preventDefault();upd();document.getElementById('rw').hidden=true;document.getElementById('fw').hidden=false}},true);
